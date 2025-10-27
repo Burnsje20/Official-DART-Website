@@ -55,13 +55,9 @@ function Footer() {
         <div className="footer-section">
           <h3>Contact Us</h3>
           <div className="footer-links">
-            <a href="mailto:dart-g@vt.edu" className="footer-button">
+            <a href="mailto:nickolasc24@vt.edu" className="footer-button">
               <img src="/icons/email.svg" alt="Email" />
-              <span>dart-g@vt.edu</span>
-            </a>
-            <a href="mailto:DARTvtech@gmail.com" className="footer-button">
-              <img src="/icons/person.svg" alt="Trevor" />
-              <span>DARTvtech@gmail.com</span>
+              <span>nickolasc24@vt.edu</span>
             </a>
           </div>
         </div>

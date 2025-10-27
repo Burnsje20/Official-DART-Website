@@ -1,5 +1,3 @@
-//IMPORTANT Note: aspect ratio of pics: 1.06:1
-//https://imagy.app/image-aspect-ratio-changer/
 import React, { useEffect } from "react";
 import './Team.css';
 
@@ -32,7 +30,7 @@ const engineeringLeads = [
     image: "images/Luke Hartman.png",
     linkedin: "#",
   },
-  {
+  /*{
     name: "TBA",
     role: "Pinhead Larry Lead / Flipper Lead / Full Body Spin Lead",
     image: "images/QuestionMark.png",
@@ -59,7 +57,7 @@ const engineeringLeads = [
     image: "images/QuestionMark.png",
     linkedin: "#",
     email: ""
-  }
+  }*/
 ];
 
 const operationsLeads = [
@@ -88,7 +86,7 @@ const operationsLeads = [
     linkedin: "https://www.linkedin.com/in/britny-jiang-a7894629a/",
     email: ""
   },
-  {
+  /*{
     name: "Trevor Ierardi & VACANT",
     role: "MBSE Officer",
     image: "images/QuestionMark.png",
@@ -108,7 +106,7 @@ const operationsLeads = [
     image: "images/QuestionMark.png",
     linkedin: "#",
     email: ""
-  }
+  }*/
 ];
 
 const webTeam = [
@@ -124,37 +122,41 @@ const webTeam = [
 const alumni = [
   {
     year: 2024,
-    columns: [
-      ["Trevor Ierardi"]
-    ]
+    columns: [["Trevor Ierardi"]]
+  }
+];
+
+const specialThanks = [
+  {
+    name: "Samartha Madhyastha",
+    role: "Helped set up the website",
+    image: "images/Samartha Madhyastha.jpeg",
+    linkedin: "https://www.linkedin.com/in/samartha-m03/",
+    email: ""
   }
 ];
 
 export function Team() {
   useEffect(() => {
     const root = document.documentElement;
-  
+
     const applyTheme = (isDark) => {
       root.style.setProperty('--link-hover', isDark ? '#158df7ff' : '#cc0000');
     };
-  
+
     // Initial check
     const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     applyTheme(isDark);
-  
+
     // Listen for theme changes
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = (e) => applyTheme(e.matches);
     mediaQuery.addEventListener('change', handleChange);
-  
+
     return () => {
       mediaQuery.removeEventListener('change', handleChange);
     };
   }, []);
-
-<div style={{ textAlign: "center", marginTop: "2rem" }}>
-  <a href="/robots" className="about-btn">View Robots</a>
-</div>
 
   return (
     <div className="team-page">
@@ -257,27 +259,54 @@ export function Team() {
           </div>
         ))}
       </div>
-<h1 className="team-title">Alumni</h1>
-{/* --- Alumni Section --- */}
-<section className="alumni-section">
-  {alumni.map(({ year, columns }) => (
-    <div className="alumni-year-block" key={year}>
-      <h2 className="alumni-year">{year}</h2>
-      <div className="alumni-columns">
-        {columns.map((list, idx) => (
-          <ul className="alumni-list" key={idx}>
-            {list.map((name) => (
-              <li key={name}>
-                <span className="dot" aria-hidden="true"></span>
-                <span className="name">{name}</span>
-              </li>
-            ))}
-          </ul>
+
+      {/* --- Special Thanks BEFORE Alumni (card format) --- */}
+      <h1 className="team-title">Special Thanks</h1>
+      <div className="team-grid">
+        {specialThanks.map((member, index) => (
+          <div className="team-card" key={index}>
+            <img src={member.image} alt={member.name} className="team-photo" />
+            <div className="team-info">
+              <h3>{member.name}</h3>
+              <p>{member.role}</p>
+            </div>
+            <div className="team-links">
+              {member.linkedin && (
+                <a href={member.linkedin} target="_blank" rel="noreferrer">
+                  <i className="fa-brands fa-linkedin"></i>
+                </a>
+              )}
+              {member.email && (
+                <a href={`mailto:${member.email}`}>
+                  <i className="fa-solid fa-envelope"></i>
+                </a>
+              )}
+            </div>
+          </div>
         ))}
       </div>
-    </div>
-  ))}
-</section>
+
+      <h1 className="team-title">Alumni</h1>
+      {/* --- Alumni Section --- */}
+      <section className="alumni-section">
+        {alumni.map(({ year, columns }) => (
+          <div className="alumni-year-block" key={year}>
+            <h2 className="alumni-year">{year}</h2>
+            <div className="alumni-columns">
+              {columns.map((list, idx) => (
+                <ul className="alumni-list" key={idx}>
+                  {list.map((name) => (
+                    <li key={name}>
+                      <span className="dot" aria-hidden="true"></span>
+                      <span className="name">{name}</span>
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
+          </div>
+        ))}
+      </section>
 
       <div style={{ textAlign: "center", marginTop: "2rem" }}>
         <a href="/robots" className="about-btn">View Robots</a>

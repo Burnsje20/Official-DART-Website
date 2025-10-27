@@ -239,8 +239,8 @@ export function Land() {
             combat robotics — no experience required. Join us to learn, build,
             and compete.
           </p>
-          <a href="mailto:DARTvtech@gmail.com" className="about-btn">
-            DARTvtech@gmail.com
+          <a href="mailto:nickolasc24@vt.edu" className="about-btn">
+            nickolasc24@vt.edu
           </a>
         </div>
       </section>
