@@ -1,6 +1,6 @@
 {
-  "homepage": "http://dart-vt.github.io",
-  "name": "dart-vt.github.io",
+  "name": "official-dart-website",
+  "homepage": "https://burnsje20.github.io/Official-DART-Website",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
