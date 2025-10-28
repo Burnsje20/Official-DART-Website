@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.6c883017.css",
-    "main.js": "/static/js/main.3a49e61a.js",
-    "static/media/IMG_9158.mp4": "/static/media/IMG_9158.40b739676125c0d54f2b.mp4",
-    "static/media/IMG_9097.png": "/static/media/IMG_9097.b156fd983a4068f29992.png",
-    "static/media/IMG_6262.png": "/static/media/IMG_6262.3ff24960a0735c49ff69.png",
-    "static/media/team.jpg": "/static/media/team.ed0c47abf3c837bf5542.jpg",
-    "index.html": "/index.html",
-    "main.6c883017.css.map": "/static/css/main.6c883017.css.map",
-    "main.3a49e61a.js.map": "/static/js/main.3a49e61a.js.map"
+    "main.css": "/Official-DART-Website/static/css/main.6c883017.css",
+    "main.js": "/Official-DART-Website/static/js/main.48175511.js",
+    "static/media/IMG_9158.mp4": "/Official-DART-Website/static/media/IMG_9158.40b739676125c0d54f2b.mp4",
+    "static/media/IMG_9097.png": "/Official-DART-Website/static/media/IMG_9097.b156fd983a4068f29992.png",
+    "static/media/IMG_6262.png": "/Official-DART-Website/static/media/IMG_6262.3ff24960a0735c49ff69.png",
+    "static/media/team.jpg": "/Official-DART-Website/static/media/team.ed0c47abf3c837bf5542.jpg",
+    "index.html": "/Official-DART-Website/index.html",
+    "main.6c883017.css.map": "/Official-DART-Website/static/css/main.6c883017.css.map",
+    "main.48175511.js.map": "/Official-DART-Website/static/js/main.48175511.js.map"
   },
   "entrypoints": [
     "static/css/main.6c883017.css",
-    "static/js/main.3a49e61a.js"
+    "static/js/main.48175511.js"
   ]
 }
