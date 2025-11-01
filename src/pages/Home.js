@@ -65,7 +65,7 @@ function Footer() {
           <h3>Social</h3>
           <div className="footer-links">
             <a href="https://www.instagram.com/vtdart/" target="_blank" rel="noreferrer" className="footer-button">
-              <img src="/icons/instagram.svg" alt="Instagram" />
+              <img src={`${process.env.PUBLIC_URL}/icons/instagram.svg`} alt="Instagram" />
               <span>Instagram</span>
             </a>
             <a href="https://discord.gg/GY4mx3Eb" target="_blank" rel="noreferrer" className="footer-button">
