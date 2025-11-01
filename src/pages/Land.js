@@ -14,7 +14,6 @@ const pub = (p) => `${process.env.PUBLIC_URL}/${p.replace(/^\/+/, "")}`;
 // For images, store RELATIVE paths only (files should be in public/images)
 const mediaItems = [
   { type: "video", src: heroVid },                // module import is fine
-  { type: "image", src: img9052, alt: "Behind the scenes" },
   { type: "image", src: "images/IMG_8931.png",     alt: "Pinhead Larry" },
   { type: "image", src: "images/IMG_9107.png",     alt: "Storm Surge"  },
 ];
