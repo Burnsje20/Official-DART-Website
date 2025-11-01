@@ -21,10 +21,17 @@ jobs:
         with:
           node-version: '20'
       - run: npm ci
-      - run: npm run build
+
+      # 👇 Add this block here
+      - name: Build
+        run: npm run build
+        env:
+          CI: false
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./build   # CRA output folder
+          path: ./build
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
