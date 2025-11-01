@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Land.css";
 import heroVid from "../assets/IMG_9158.mp4";
 import teamPhoto from "../assets/team.jpg";
+import img9052 from "../assets/IMG_9052.png";
 import topImage from "../assets/IMG_6262.png";
 import aboutImage from "../assets/IMG_9097.png";
 import { useTheme } from "../utils/useTheme";
@@ -13,11 +14,12 @@ const pub = (p) => `${process.env.PUBLIC_URL}/${p.replace(/^\/+/, "")}`;
 // For images, store RELATIVE paths only (files should be in public/images)
 const mediaItems = [
   { type: "video", src: heroVid },                // module import is fine
-  { type: "image", src: "images/IMG_9052.png", alt: "Behind the scenes" },
+  { type: "image", src: img9052, alt: "Behind the scenes" },
   { type: "image", src: "images/IMG_8931.png",     alt: "Pinhead Larry" },
   { type: "image", src: "images/IMG_9107.png",     alt: "Storm Surge"  },
 ];
-
+const resolveSrc = (it) =>
+    typeof it.src === "string" ? pub(it.src) : it.src;
 function MediaCarousel() {
   const [current, setCurrent] = useState(0);
   const next = () => setCurrent((current + 1) % mediaItems.length);
@@ -35,7 +37,7 @@ function MediaCarousel() {
             Your browser does not support the video tag.
           </video>
         ) : (
-          <img src={pub(item.src)} alt={item.alt} className="media-image" />
+          <img src={resolveSrc(item)} alt={item.alt} className="media-image" />
         )}
       </div>
       <button onClick={next} className="about-btn">❯</button>
