@@ -3,24 +3,26 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Sponsors.css";
 
+// Helper to resolve correct base (/Official-DART-Website)
+const pub = (p) => `${process.env.PUBLIC_URL}/${p.replace(/^\/+/, "")}`;
+
 const SPONSORS = [
-  // --- Replace logo paths/links with your real ones ---
   {
     name: "Calders Coffee Cafe",
     url: "https://calderscoffeecafe.com/",
-    logo: "/images/CaldersLogo.jpg",
+    logo: "images/CaldersLogo.jpg",          // <-- plain path (no leading slash)
     tier: "Sponsors",
   },
   {
     name: "Undergraduate Student Senate of Virginia Tech",
     url: "https://uss.vt.edu/",
-    logo: "/images/USSVT.png",
+    logo: "images/USSVT.png",                // <-- plain path (no leading slash)
     tier: "Sponsors",
-  }
+  },
 ];
 
 export function Sponsors() {
-  const sponsorEmail = "DARTvtech@gmail.com"; // or "dart-g@vt.edu"
+  const sponsorEmail = "DARTvtech@gmail.com";
   const subject = encodeURIComponent("Sponsorship Inquiry — DART (Virginia Tech)");
   const body = encodeURIComponent(
     `Hello DART Team,
@@ -31,9 +33,9 @@ Thanks,`
   );
   const mailto = `mailto:${sponsorEmail}?subject=${subject}&body=${body}`;
 
-  const grouped = { "Sponsors": SPONSORS };
-const sortedTiers = ["Sponsors"];
-
+  // If you add more tiers later, group programmatically; for now this is fine:
+  const grouped = { Sponsors: SPONSORS };
+  const sortedTiers = ["Sponsors"];
 
   return (
     <div className="sponsors-page">
@@ -45,12 +47,8 @@ const sortedTiers = ["Sponsors"];
           and outreach to the community.
         </p>
         <div className="cta-row">
-          <a className="btn primary" href={mailto}>
-            Become a Sponsor
-          </a>
-          <Link className="btn ghost" to="/robots">
-            See Our Robots
-          </Link>
+          <a className="btn primary" href={mailto}>Become a Sponsor</a>
+          <Link className="btn ghost" to="/robots">See Our Robots</Link>
         </div>
       </section>
 
@@ -69,7 +67,7 @@ const sortedTiers = ["Sponsors"];
                   aria-label={`${s.name} — opens in new tab`}
                 >
                   <img
-                    src={s.logo}
+                    src={pub(s.logo)}                 // <-- resolve to /Official-DART-Website/...
                     alt={`${s.name} logo`}
                     loading="lazy"
                     decoding="async"
@@ -82,16 +80,11 @@ const sortedTiers = ["Sponsors"];
         ))}
       </section>
 
-      
-
-<section className="closing-cta">
-  <h2>Support the Team</h2>
-  <p>
-    Interested in joining as a sponsor? We offer recognition across events, social, and our website!
-  </p>
-  <a className="btn primary" href={mailto}>Become a Sponsor</a>
-</section>
-
+      <section className="closing-cta">
+        <h2>Support the Team</h2>
+        <p>Interested in joining as a sponsor? We offer recognition across events, social, and our website!</p>
+        <a className="btn primary" href={mailto}>Become a Sponsor</a>
+      </section>
     </div>
   );
 }

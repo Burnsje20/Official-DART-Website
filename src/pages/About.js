@@ -2,6 +2,7 @@
 import React from "react";
 import "./About.css";
 import { useTheme } from "../utils/useTheme";
+const pub = (p) => `${process.env.PUBLIC_URL}/${p.replace(/^\/+/, '')}`;
 
 export function About() {
   useTheme();
@@ -47,7 +48,7 @@ export function About() {
       {/* Image back at the bottom */}
       <div style={{ textAlign: "center", marginTop: "3rem" }}>
         <img
-          src="/images/JanGam.jpg"
+          src={pub("/images/JanGam.jpg")}
           alt="DART January GAM"
           style={{
             maxWidth: "100%",

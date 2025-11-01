@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 import "./Robots.css";
 import { Link } from "react-router-dom";
+const pub = (p) => `${process.env.PUBLIC_URL}/${p.replace(/^\/+/, '')}`;
 
 const robotList = [
   {
@@ -29,7 +30,7 @@ const robotList = [
 ];
 
 export function Robots() {
-  const listRef = useRef();
+  const listRef = useRef(null);
 
   return (
     <div className="robots-page">
@@ -37,7 +38,7 @@ export function Robots() {
       <div className="robots-grid">
         {robotList.map((robot, index) => (
           <Link to={robot.link} className="robot-card" key={index}>
-            <img src={robot.image} alt={robot.name} className="robot-image" />
+            <img src={pub(robot.image)} alt={robot.name} className="robot-image" />
             <div className="robot-info">
               <h3>{robot.name}</h3>
               <p><em>{robot.type}</em></p>

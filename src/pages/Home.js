@@ -9,6 +9,7 @@ import './Home.css';
 import themes from './themes.json';
 import { Team } from './Team';
 import { Robots } from './Robots';
+const pub = (p) => `${process.env.PUBLIC_URL}/${p.replace(/^\/+/, '')}`;
 
 function setTheme(themestr) {
   const theme = themes[themestr];
@@ -29,9 +30,9 @@ function Header({ currentTheme, toggleTheme }) {
 
   return (
     <div id="header">
-      <img src='icons/menu.svg' id="hamburber" alt="menu" />
+      <img src={pub('icons/menu.svg')} id="hamburber" alt="menu" />
       <Link to="/" id="logo_container">
-        <img src='images/DART.svg' id="logo" alt="logo" />
+        <img src={pub('images/DART.svg')} id="logo" alt="logo" />
 
       </Link>
       <nav id="navPanel">
@@ -56,7 +57,7 @@ function Footer() {
           <h3>Contact Us</h3>
           <div className="footer-links">
             <a href="mailto:nickolasc24@vt.edu" className="footer-button">
-              <img src="/icons/email.svg" alt="Email" />
+              <img src={pub("/icons/email.svg")} alt="Email" />
               <span>nickolasc24@vt.edu</span>
             </a>
           </div>
@@ -69,19 +70,19 @@ function Footer() {
               <span>Instagram</span>
             </a>
             <a href="https://discord.gg/GY4mx3Eb" target="_blank" rel="noreferrer" className="footer-button">
-              <img src="/icons/discord.svg" alt="Discord" />
+              <img src={pub("/icons/discord.svg")} alt="Discord" />
               <span>Discord</span>
             </a>
             <a href="https://vt.campuslabs.com/engage/organization/dart" target="_blank" rel="noreferrer" className="footer-button">
-              <img src="/icons/gobbler.svg" alt="GobblerConnect" />
+              <img src={pub("/icons/gobbler.svg")} alt="GobblerConnect" />
               <span>GobblerConnect</span>
             </a>
             <a href="https://www.linkedin.com/company/destructive-arena-robotics-team-dart/" target="_blank" rel="noreferrer" className="footer-button">
-              <img src="/icons/linkedin.svg" alt="LinkedIn" />
+              <img src={pub("/icons/linkedin.svg")} alt="LinkedIn" />
               <span>LinkedIn</span>
             </a>
             <a href="https://www.youtube.com/@DARTatVirginiaTech" target="_blank" rel="noreferrer" className="footer-button">
-              <img src="/icons/youtube.svg" alt="YouTube" />
+              <img src={pub("/icons/youtube.svg")} alt="YouTube" />
               <span>YouTube</span>
             </a>
           </div>

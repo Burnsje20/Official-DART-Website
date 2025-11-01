@@ -4,15 +4,18 @@ import heroVid from "../assets/IMG_9158.mp4";
 import teamPhoto from "../assets/team.jpg";
 import topImage from "../assets/IMG_6262.png";
 import aboutImage from "../assets/IMG_9097.png";
-import { useTheme } from '../utils/useTheme'; // custom theme hook
+import { useTheme } from "../utils/useTheme";
 import { Link } from "react-router-dom";
 
+// Resolve correct base (/Official-DART-Website)
+const pub = (p) => `${process.env.PUBLIC_URL}/${p.replace(/^\/+/, "")}`;
 
+// For images, store RELATIVE paths only (files should be in public/images)
 const mediaItems = [
-  { type: "video", src: heroVid },
-  { type: "image", src: "/images/IMG_9052 (1).png", alt: "Behind the scenes" },
-  { type: "image", src: "/images/IMG_8931.png",  alt: "Pinhead Larry" },
-  { type: "image", src: "/images/IMG_9107.png",  alt: "Storm Surge"  },
+  { type: "video", src: heroVid },                // module import is fine
+  { type: "image", src: "images/IMG_9052-1.png", alt: "Behind the scenes" },
+  { type: "image", src: "images/IMG_8931.png",     alt: "Pinhead Larry" },
+  { type: "image", src: "images/IMG_9107.png",     alt: "Storm Surge"  },
 ];
 
 function MediaCarousel() {
@@ -32,7 +35,7 @@ function MediaCarousel() {
             Your browser does not support the video tag.
           </video>
         ) : (
-          <img src={item.src} alt={item.alt} className="media-image" />
+          <img src={pub(item.src)} alt={item.alt} className="media-image" />
         )}
       </div>
       <button onClick={next} className="about-btn">❯</button>
@@ -53,58 +56,34 @@ export function Land() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
-          // ABOUT section: toggle visible on scroll in/out
           if (entry.target === aboutTextRef.current) {
-            if (entry.isIntersecting) {
-              aboutTextRef.current.classList.add("visible");
-            } else {
-              aboutTextRef.current.classList.remove("visible");
-            }
+            aboutTextRef.current.classList.toggle("visible", entry.isIntersecting);
           }
-          // FOUNDERS section: slide all in/out with Trevor
           if (entry.target === trevorRef.current) {
-            const action = entry.isIntersecting ? 'add' : 'remove';
-            [
-              trevorRef.current,
-              nickRef.current,
-              foundersLeftRef.current,
-              foundersRightRef.current
-            ].forEach(el => el.classList[action]("visible"));
+            const action = entry.isIntersecting ? "add" : "remove";
+            [trevorRef.current, nickRef.current, foundersLeftRef.current, foundersRightRef.current]
+              .forEach(el => el && el.classList[action]("visible"));
           }
-          // ROBOT cards: slide up/down on scroll in/out
           if (entry.target.classList.contains("project-card")) {
             entry.target.classList.toggle("visible", entry.isIntersecting);
           }
         });
       },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -100px 0px"
-      }
+      { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
     );
 
-    // observe About section
-    if (aboutTextRef.current) {
-      observer.observe(aboutTextRef.current);
-    }
-    // observe Trevor for founders
-    if (trevorRef.current) {
-      observer.observe(trevorRef.current);
-    }
-    // set up and observe robot project cards
+    if (aboutTextRef.current) observer.observe(aboutTextRef.current);
+    if (trevorRef.current) observer.observe(trevorRef.current);
+
     const cards = Array.from(document.querySelectorAll(".project-grid .project-card"));
     cards.forEach((card, i) => {
-      // add initial hidden + direction classes
-      card.classList.add(
-        "hidden",
-        i === 1 ? "slide-down" : "slide-up"
-      );
+      card.classList.add("hidden", i === 1 ? "slide-down" : "slide-up");
       observer.observe(card);
     });
 
     return () => {
-      if (aboutTextRef.current)     observer.unobserve(aboutTextRef.current);
-      if (trevorRef.current)        observer.unobserve(trevorRef.current);
+      if (aboutTextRef.current) observer.unobserve(aboutTextRef.current);
+      if (trevorRef.current) observer.unobserve(trevorRef.current);
       cards.forEach(card => observer.unobserve(card));
     };
   }, []);
@@ -114,7 +93,7 @@ export function Land() {
       <div className="top-image-wrapper">
         <img src={topImage} alt="Top Robotics Scene" className="top-banner" />
         <div className="hero-overlay">
-          <img src="/images/DART.svg" alt="DART Logo" className="hero-logo small" />
+          <img src={pub("images/DART.svg")} alt="DART Logo" className="hero-logo small" />
           <h1>DART Robotics</h1>
           <p>Innovating through destruction – Virginia Tech’s Combat Robotics Team</p>
         </div>
@@ -138,16 +117,16 @@ export function Land() {
         <h2>Robots</h2>
         <div className="project-grid">
           <div className="project-card">
-            <img src="/images/stormsurge.png" alt="Storm Surge" />
+            <img src={pub("images/stormsurge.png")} alt="Storm Surge" />
             <h3>Storm Surge</h3>
           </div>
           <div className="project-card">
-            <img src="/images/pinhead.png" alt="Pinhead Larry" />
+            <img src={pub("images/pinhead.png")} alt="Pinhead Larry" />
             <h3>Pinhead Larry</h3>
             <Link to="/robots" className="about-btn">View Full Robot Page</Link>
           </div>
           <div className="project-card">
-            <img src="/images/eggbeater.png" alt="Eggbeater" />
+            <img src={pub("images/eggbeater.png")} alt="Eggbeater" />
             <h3>Eggbeater</h3>
           </div>
         </div>
@@ -166,13 +145,14 @@ export function Land() {
               </p>
             </div>
             <div ref={trevorRef} className="team-member slide-in-left hidden">
-              <img src="/images/Trevor Ierardi.png" alt="Trevor Ierardi" />
+              {/* Consider renaming these files to avoid spaces */}
+              <img src={pub("images/Trevor Ierardi.png")} alt="Trevor Ierardi" />
               <h3>Trevor Ierardi</h3>
             </div>
           </div>
           <div className="founder-block">
             <div ref={nickRef} className="team-member slide-in-right hidden">
-              <img src="/images/Nick Cowen.png" alt="Nick Cowen" />
+              <img src={pub("images/Nick Cowen.png")} alt="Nick Cowen" />
               <h3>Nick Cowen</h3>
             </div>
             <div ref={foundersRightRef} className="founders-right-text hidden">
@@ -191,26 +171,19 @@ export function Land() {
         <MediaCarousel />
       </section>
 
-      <section className="news">
-        
-      </section>
       <section className="sponsors section-colored">
-  <h2>Our Sponsors</h2>
-  <h4>
-    We are proudly supported by industry partners and local businesses who help make our robots possible.
-  </h4>
-  <div className="sponsor-logos">
-    <img src={"/icons/SponsorLogo.svg"} alt="Sponsor Logo" className="sponsor-logo" />
-    <img src={"/icons/SponsorLogo2.svg"} alt="Sponsor Logo2" className="sponsor-logo" />
-    {/* Add more sponsor logos here */}
-  </div>
-  {/* New "See More" button */}
-  <div style={{ marginTop: "1.5rem", textAlign: "center" }}>
-    <Link to="/sponsors" className="about-btn">
-      See More
-    </Link>
-  </div>
-</section>
+        <h2>Our Sponsors</h2>
+        <h4>
+          We are proudly supported by industry partners and local businesses who help make our robots possible.
+        </h4>
+        <div className="sponsor-logos">
+          <img src={pub("icons/SponsorLogo.svg")}  alt="Sponsor Logo"  className="sponsor-logo" />
+          <img src={pub("icons/SponsorLogo2.svg")} alt="Sponsor Logo2" className="sponsor-logo" />
+        </div>
+        <div style={{ marginTop: "1.5rem", textAlign: "center" }}>
+          <Link to="/sponsors" className="about-btn">See More</Link>
+        </div>
+      </section>
 
       <section
         className="join-section"
