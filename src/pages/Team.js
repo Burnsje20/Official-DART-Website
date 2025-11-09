@@ -115,6 +115,12 @@ const webTeam = [
     role: "Web Developer",
     image: "images/Justin Burns.jpg",
     linkedin: "https://www.linkedin.com/in/justin-burns-465036291",
+  },
+  {
+    name: "Aron Mulugeta",
+    role: "Web Developer",
+    image: "images/Aron Mulugeta.jpeg",
+    linkedin: "https://www.linkedin.com/in/amulugeta/",
   }
 ];
 
