@@ -74,6 +74,12 @@ const operationsLeads = [
     linkedin: "https://www.linkedin.com/in/edison-melendez-0a0029294/",
   },
   {
+    name: "Hanru Li",
+    role: "Systems Team",
+    image: "images/Hanru Li.jpg",
+    linkedin: "https://www.linkedin.com/in/hanru-li-ba9012269/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_people%3Bg6nmr3hbT%2BCEZ8TST1BZeg%3D%3D",
+  },
+  {
     name: "Louis Bagtas",
     role: "Community Manager / Campus Manager",
     image: "images/Eric Louis Bagtas.png",
