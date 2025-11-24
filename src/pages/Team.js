@@ -319,10 +319,6 @@ export function Team() {
           </div>
         ))}
       </section>
-
-      <div style={{ textAlign: "center", marginTop: "2rem" }}>
-        <a href="/robots" className="about-btn">View Robots</a>
-      </div>
     </div>
   );
 }

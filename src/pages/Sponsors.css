@@ -72,7 +72,10 @@
 .grid {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  /* use auto-fit so the grid will center when there are fewer items */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 220px));
+  justify-content: center; /* center the whole grid track area */
+  justify-items: center;   /* center items inside each grid cell */
 }
 
 @media (max-width: 1000px) {
