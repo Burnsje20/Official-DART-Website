@@ -43,5 +43,19 @@
   "devDependencies": {
     "gh-pages": "^6.3.0",
     "sitemap": "^8.0.0"
-  }
+  },
+  "main": "generate-sitemap.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dart-vt/Official-DART-Website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dart-vt/Official-DART-Website/issues"
+  },
+  "description": ""
 }
