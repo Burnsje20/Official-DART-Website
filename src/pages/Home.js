@@ -24,24 +24,44 @@ function setTheme(themestr) {
 }
 
 function Header({ currentTheme, toggleTheme }) {
+  const [menuOpen, setMenuOpen] = React.useState(false);
+
   React.useEffect(() => {
     setTheme(currentTheme);
   }, [currentTheme]);
 
+  // close the mobile menu when viewport becomes desktop to avoid stuck-open state
+  React.useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768 && menuOpen) setMenuOpen(false);
+    };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, [menuOpen]);
+
   return (
     <div id="header">
-      <img src={pub('icons/menu.svg')} id="hamburber" alt="menu" />
+      <button
+        id="hamburber"
+        aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen((s) => !s)}
+      >
+        <img src={pub('icons/menu.svg')} alt="" aria-hidden="true" />
+      </button>
+
       <Link to="/" id="logo_container">
         <img src={pub('images/DART.svg')} id="logo" alt="logo" />
-
       </Link>
-      <nav id="navPanel">
+
+      <nav id="navPanel" className={menuOpen ? 'open' : ''}>
         {Object.keys(data).map((key, index) => (
           <li key={index} className="navItem">
-            <Link to={data[key]}>{key}</Link>
+            <Link to={data[key]} onClick={() => setMenuOpen(false)}>{key}</Link>
           </li>
         ))}
       </nav>
+
       <button id="theme" onClick={toggleTheme}>
         <img src={currentTheme === 'light' ? 'icons/moon.svg' : 'icons/sun.svg'} alt="theme toggle" />
       </button>

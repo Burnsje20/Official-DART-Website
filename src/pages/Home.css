@@ -14,13 +14,23 @@
     height: clamp(60px, 5rem, 120px);
     align-items: center;
     background: var(--overlay);
-    z-index: 10;
+    z-index: 9999; /* ensure header is on top of page content */
   }
   
   #hamburber {
     position: absolute;
     height: 70%;
     left: 3vw;
+    background: none;
+    border: none;
+    padding: 0.5rem; /* larger tap target */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10001; /* make sure the hamburger sits above overlays */
+    pointer-events: auto; /* ensure it can be clicked */
+    touch-action: manipulation; /* improve responsiveness on mobile */
   }
   
   #logo {
@@ -44,6 +54,51 @@
     width: 60%;
     height: 100%;
     align-items: center;
+  }
+
+  /* when mobile menu is toggled open */
+  #navPanel.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 1rem;
+    /*background: transparent; /* no colored background */
+    padding: 0; /* let links define spacing */
+    border-radius: 0;
+    box-shadow: none;
+    width: auto;
+    z-index: 10002;
+  }
+
+  #navPanel.open li {
+    height: auto;
+    margin: 0.2rem 0;
+  }
+
+  /* make links inherit the page text color and simple spacing */
+  #navPanel.open li a {
+    display: block;
+    padding: 0.45rem 0.75rem;
+    color: var(--txt);
+    text-decoration: none;
+    border-radius: 0;
+    transition: background 0.12s ease, color 0.12s ease;
+    text-align: left;
+    /* --- Mobile nav: divider for presentation --- */
+    border-bottom: 1px solid rgba(10,10,10,10); /* barely visible */
+  }
+
+  #navPanel.open li a:hover,
+  #navPanel.open li a:focus {
+    background: rgba(0,0,0,0.04);
+    color: var(--txt);
+    outline: none;
+  }
+
+  /* remove divider after the last item to keep the list tidy */
+  #navPanel.open li:last-child a {
+    border-bottom: none;
   }
   
   #navPanel li {
